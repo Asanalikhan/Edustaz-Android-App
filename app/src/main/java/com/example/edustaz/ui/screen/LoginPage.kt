@@ -16,6 +16,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.edustaz.ui.components.Button
 import com.example.edustaz.ui.components.EmailTextField
@@ -24,7 +25,8 @@ import com.example.edustaz.ui.components.RememberMeCheckBox
 
 @Composable
 fun LoginPage(onNavigateToRegister: () -> Unit,
-              onNavigateToReset: () -> Unit) {
+              onNavigateToReset: () -> Unit,
+              onNavigateToLogin: () -> Unit) {
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
 
@@ -58,7 +60,7 @@ fun LoginPage(onNavigateToRegister: () -> Unit,
         Spacer(modifier = Modifier.padding(0.dp, 8.dp))
         RememberMeCheckBox(modifier = Modifier)
         Spacer(modifier = Modifier.padding(0.dp, 71.dp))
-        Button(onClick = { onNavigateToReset() }, text = "Кіру")
+        Button(onClick = { onNavigateToLogin() }, text = "Кіру")
         Spacer(modifier = Modifier.padding(0.dp, 16.dp))
         Text(
             "Тіркелмегенсізбе?",
@@ -75,4 +77,5 @@ fun LoginPage(onNavigateToRegister: () -> Unit,
         )
     }
 }
+
 

@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.example.edustaz.ui.screen.HomePage
 import com.example.edustaz.ui.screen.LoginPage
 import com.example.edustaz.ui.screen.RegistrationPage
 import com.example.edustaz.ui.screen.ResetPasswordPage
@@ -13,13 +14,18 @@ fun AppNavGraph(navController: NavHostController) {
     NavHost(navController = navController, startDestination = "login") {
         composable("login") {
             LoginPage(onNavigateToRegister = { navController.navigate("register") },
-                onNavigateToReset = { navController.navigate("reset") })
+                onNavigateToReset = { navController.navigate("reset")},
+                onNavigateToLogin = {navController.navigate("home")})
         }
         composable("register") {
             RegistrationPage(onNavigateBack = { navController.popBackStack() })
         }
         composable("reset") {
             ResetPasswordPage(onNavigateBack = { navController.popBackStack() })
+        }
+        composable("home") {
+            HomePage(onNavigateBack = {navController.popBackStack()},
+                title = "Home")
         }
     }
 }
