@@ -1,6 +1,11 @@
 package com.example.edustaz.ui.theme
 
+import android.content.res.Resources
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.material3.Typography
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
@@ -35,6 +40,16 @@ val Typography = Typography(
         fontFamily = MontserratFont,
         fontWeight = FontWeight.Normal,
         fontSize = 14.sp
+    ),
+    bodyMedium = TextStyle(
+        fontSize = 8.sp,
+        fontFamily = MontserratFont,
+        fontWeight = FontWeight.Medium
+    ),
+    titleSmall = TextStyle(
+        fontFamily = MontserratFont,
+        fontWeight = FontWeight.Normal,
+        fontSize = 6.sp
     )
 
 )
