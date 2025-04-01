@@ -1,5 +1,6 @@
 package com.example.edustaz.ui.components
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
@@ -21,8 +22,7 @@ fun MaterialCard(material: MaterialItem) {
             .padding(8.dp)
             .width(170.dp), // Adjust width for better layout
         shape = RoundedCornerShape(5.dp), // Smoother edges
-        colors = CardDefaults.cardColors(containerColor = Color(0xFFF8F9FA)), // Light gray background
-        elevation = CardDefaults.cardElevation(defaultElevation = 6.dp)
+        colors = CardDefaults.cardColors(containerColor = Color.White), // Light gray background
     ) {
         Column(
             modifier = Modifier.padding(7.dp),

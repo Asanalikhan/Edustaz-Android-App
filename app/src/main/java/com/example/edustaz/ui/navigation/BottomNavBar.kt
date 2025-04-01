@@ -16,11 +16,12 @@ import com.example.edustaz.data.BottomNavItem
 fun BottomNavBar(
     items: List<BottomNavItem>,
     navController: NavController,
-    onItemClick: (BottomNavItem) -> Unit
+    onItemClick: (BottomNavItem) -> Unit,
 ) {
     val backStackEntry = navController.currentBackStackEntryAsState()
     NavigationBar(
         tonalElevation = 5.dp,
+        containerColor = Color.White
     ) {
         items.forEach { item ->
             val selected = item.route == backStackEntry.value?.destination?.route
@@ -35,8 +36,9 @@ fun BottomNavBar(
                 },
                 colors = NavigationBarItemDefaults.colors(
                     selectedIconColor = Color(0xFF4741E1),
-                    unselectedIconColor = Color.Black
-                )
+                    unselectedIconColor = Color.Black,
+                    indicatorColor = Color.Transparent
+                ),
             )
         }
     }

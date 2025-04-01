@@ -38,7 +38,7 @@ fun AppNavGraph(navController: NavHostController) {
             CoursePage()
         }
         composable("materials") {
-            MaterialsPage()
+            MaterialsPage(title = "Материалдар", navController = navController)
         }
         composable("olympiad") {
             OlympiadPage()
