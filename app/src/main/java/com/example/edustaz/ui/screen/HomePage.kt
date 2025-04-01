@@ -4,8 +4,10 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -97,9 +99,34 @@ fun HomePage(
             Spacer(modifier = Modifier.height(16.dp))
             InfiniteMaterialList(materials = sampleMaterials)
             GridScreen()
-            Spacer(modifier = Modifier.height(17.dp))
             Timer()
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(22.dp, 18.dp)
+                    .background(Color.White, shape = RoundedCornerShape(20.dp))
+            ) {
+                Text(
+                    "EDUSTAZ",
+                    fontFamily = MontserratFont,
+                    fontWeight = FontWeight.Medium,
+                    fontSize = 14.sp,
+                    color = Color.Green,
+                    modifier = Modifier
+                        .align(Alignment.CenterHorizontally)
+                        .padding(0.dp, 14.dp)
+                )
+                Text(
+                    "Порталда педагогтар бір-бірімен шексіз тәжірибе алмасуына барлық жағдай жасалған. Педагогтарға керекті біліктілікті арттыру курстары, семинарлар, ашық сабақтар жинағы, жаңалықтар, олимпиадалар мен 350 000 астам материалдар базасы жинақталған\n",
+                    fontFamily = MontserratFont,
+                    fontWeight = FontWeight.Normal,
+                    fontSize = 12.sp,
+                    modifier = Modifier
+                        .align(Alignment.CenterHorizontally)
+                        .padding(7.dp, 0.dp)
+                )
+
+            }
         }
     }
 }
-

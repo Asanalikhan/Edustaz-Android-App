@@ -25,7 +25,7 @@ fun AppNavGraph(navController: NavHostController) {
         }
         composable("home") {
             HomePage(onNavigateBack = {navController.popBackStack()},
-                title = "Home")
+                title = "Басты бет")
         }
     }
 }
