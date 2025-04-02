@@ -4,14 +4,14 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.example.edustaz.ui.screen.AtestatPage
-import com.example.edustaz.ui.screen.CoursePage
-import com.example.edustaz.ui.screen.HomePage
-import com.example.edustaz.ui.screen.LoginPage
-import com.example.edustaz.ui.screen.MaterialsPage
-import com.example.edustaz.ui.screen.OlympiadPage
-import com.example.edustaz.ui.screen.RegistrationPage
-import com.example.edustaz.ui.screen.ResetPasswordPage
+import com.example.edustaz.ui.screen.atestat.AtestatPage
+import com.example.edustaz.ui.screen.course.CoursePage
+import com.example.edustaz.ui.screen.home.HomePage
+import com.example.edustaz.ui.screen.auth.LoginPage
+import com.example.edustaz.ui.screen.materials.MaterialsPage
+import com.example.edustaz.ui.screen.olympiad.OlympiadPage
+import com.example.edustaz.ui.screen.auth.RegistrationPage
+import com.example.edustaz.ui.screen.auth.ResetPasswordPage
 
 @Composable
 fun AppNavGraph(navController: NavHostController) {

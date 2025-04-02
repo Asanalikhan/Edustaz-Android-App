@@ -73,14 +73,14 @@ fun Timer() {
             )
 
             Row(
-                verticalAlignment = Alignment.CenterVertically
+                verticalAlignment = Alignment.CenterVertically,
             ) {
                 TimerBox(remainingTime.days, "Күн")
-                Spacer(modifier = Modifier.width(5.dp))
+                Spacer(modifier = Modifier.width(6.dp))
                 TimerBox(remainingTime.hours, "Сағат")
-                Spacer(modifier = Modifier.width(5.dp))
+                Spacer(modifier = Modifier.width(6.dp))
                 TimerBox(remainingTime.minutes, "Минут")
-                Spacer(modifier = Modifier.width(5.dp))
+                Spacer(modifier = Modifier.width(6.dp))
                 TimerBox(remainingTime.second, "Секунд")
                 Spacer(modifier = Modifier.width(25.dp))
                 Image(

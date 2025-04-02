@@ -1,9 +1,18 @@
 package com.example.edustaz.ui.components
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.*
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Icon
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -14,28 +23,29 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.edustaz.R
 import com.example.edustaz.data.MaterialItem
+import com.example.edustaz.ui.theme.MontserratFont
 
 @Composable
 fun MaterialCard(material: MaterialItem) {
     Card(
         modifier = Modifier
             .padding(8.dp)
-            .width(170.dp), // Adjust width for better layout
-        shape = RoundedCornerShape(5.dp), // Smoother edges
-        colors = CardDefaults.cardColors(containerColor = Color.White), // Light gray background
+            .width(170.dp),
+        shape = RoundedCornerShape(5.dp),
+        colors = CardDefaults.cardColors(containerColor = Color.White),
     ) {
         Column(
             modifier = Modifier.padding(7.dp),
             verticalArrangement = Arrangement.spacedBy(10.dp)
         ) {
-            // Title
             Text(
                 text = material.title,
-                style = MaterialTheme.typography.bodyMedium,
+                fontFamily = MontserratFont,
+                fontWeight = FontWeight.Medium,
+                fontSize = 12.sp,
                 color = Color(0xFF4741E1)
             )
 
-            // Author Row
             Row(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.Start
@@ -49,12 +59,13 @@ fun MaterialCard(material: MaterialItem) {
                 Spacer(modifier = Modifier.width(6.dp))
                 Text(
                     text = material.author,
-                    style = MaterialTheme.typography.titleSmall,
+                    fontFamily = MontserratFont,
+                    fontWeight = FontWeight.Normal,
+                    fontSize = 10.sp,
                     color = Color.Black
                 )
             }
 
-            // Stats Row (Downloads & Views)
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 verticalAlignment = Alignment.CenterVertically,
@@ -70,7 +81,9 @@ fun MaterialCard(material: MaterialItem) {
                     Spacer(modifier = Modifier.width(4.dp))
                     Text(
                         text = material.downloadCount.toString(),
-                        style = MaterialTheme.typography.titleSmall,
+                        fontFamily = MontserratFont,
+                        fontWeight = FontWeight.Normal,
+                        fontSize = 10.sp,
                         color = Color(0xFF9E9E9E)
                     )
                 }
@@ -85,7 +98,9 @@ fun MaterialCard(material: MaterialItem) {
                     Spacer(modifier = Modifier.width(4.dp))
                     Text(
                         text = material.viewCount.toString(),
-                        style = MaterialTheme.typography.titleSmall,
+                        fontFamily = MontserratFont,
+                        fontWeight = FontWeight.Normal,
+                        fontSize = 10.sp,
                         color = Color(0xFF9E9E9E)
                     )
                 }

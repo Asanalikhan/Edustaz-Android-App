@@ -1,4 +1,4 @@
-package com.example.edustaz.ui.components
+package com.example.edustaz.ui.navigation
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.CenterAlignedTopAppBar
@@ -11,7 +11,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
@@ -30,7 +32,8 @@ fun TopAppBar(
                 text = title,
                 fontFamily = MontserratFont,
                 fontWeight = FontWeight.SemiBold,
-                fontSize = 22.sp
+                fontSize = 22.sp,
+                style = TextStyle(textAlign = TextAlign.Center)
             )
         },
         navigationIcon = {

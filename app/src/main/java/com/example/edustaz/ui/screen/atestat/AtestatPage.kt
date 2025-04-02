@@ -1,4 +1,4 @@
-package com.example.edustaz.ui.screen
+package com.example.edustaz.ui.screen.atestat
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
@@ -9,11 +9,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.navigation.NavController
-import com.example.edustaz.ui.components.TopAppBar
+import com.example.edustaz.ui.navigation.TopAppBar
 import com.example.edustaz.ui.navigation.BottomNavBar
 
 @Composable
-fun CoursePage(
+fun AtestatPage(
     title: String,
     navController: NavController
 ) {
@@ -38,8 +38,8 @@ fun CoursePage(
     ) { values ->
         Column(
             modifier = Modifier
-                .padding(values)
                 .fillMaxSize()
+                .padding(values)
                 .background(Color(0xFFF5F5F5))
         ) {
 

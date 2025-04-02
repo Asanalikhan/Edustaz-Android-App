@@ -1,6 +1,5 @@
-package com.example.edustaz.ui.screen
+package com.example.edustaz.ui.screen.auth
 
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -16,19 +15,18 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.edustaz.ui.components.Button
 import com.example.edustaz.ui.components.EmailTextField
 import com.example.edustaz.ui.components.PasswordTextField
-import com.example.edustaz.ui.components.RememberMeCheckBox
 
 @Composable
-fun LoginPage(onNavigateToRegister: () -> Unit,
-              onNavigateToReset: () -> Unit,
-              onNavigateToLogin: () -> Unit) {
+fun RegistrationPage(
+    onNavigateBack: () -> Unit
+) {
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
+    var confirmPassword by remember { mutableStateOf("") }
 
     Column(
         Modifier
@@ -38,18 +36,20 @@ fun LoginPage(onNavigateToRegister: () -> Unit,
         verticalArrangement = Arrangement.Center
     ) {
         Text(
-            "Кіру",
+            "Тіркелу",
             style = MaterialTheme.typography.titleLarge.copy(
                 color = Color.Black,
             )
         )
         Spacer(modifier = Modifier.padding(0.dp, 32.dp))
+
         Text(
             "Почта",
             style = MaterialTheme.typography.labelSmall,
             modifier = Modifier.align(Alignment.Start)
         )
         EmailTextField(email = email, onEmailChange = { email = it })
+
         Spacer(modifier = Modifier.padding(0.dp, 5.dp))
         Text(
             "Құпия сөз",
@@ -57,25 +57,23 @@ fun LoginPage(onNavigateToRegister: () -> Unit,
             modifier = Modifier.align(Alignment.Start)
         )
         PasswordTextField(password = password, onPasswordChange = { password = it })
-        Spacer(modifier = Modifier.padding(0.dp, 8.dp))
-        RememberMeCheckBox(modifier = Modifier)
-        Spacer(modifier = Modifier.padding(0.dp, 71.dp))
-        Button(onClick = { onNavigateToLogin() }, text = "Кіру")
-        Spacer(modifier = Modifier.padding(0.dp, 16.dp))
+
+        Spacer(modifier = Modifier.padding(0.dp, 5.dp))
         Text(
-            "Тіркелмегенсізбе?",
+            "Құпия сөзді растау",
             style = MaterialTheme.typography.labelSmall,
-            color = Color.Gray,
-            modifier = Modifier.clickable { onNavigateToRegister() }
+            modifier = Modifier.align(Alignment.Start)
         )
+        PasswordTextField(password = confirmPassword, onPasswordChange = { confirmPassword = it })
+
+        Spacer(modifier = Modifier.padding(0.dp, 24.dp))
+        Button(onClick = { onNavigateBack() }, text = "Тіркелу")
+
         Spacer(modifier = Modifier.padding(0.dp, 16.dp))
         Text(
-            "Құпия сөзді ұмыттыңызба?",
+            "Тіркелгенсіз бе? Кіру",
             style = MaterialTheme.typography.labelSmall,
-            color = Color.Gray,
-            modifier = Modifier.clickable { onNavigateToReset() }
+            color = Color.Gray
         )
     }
 }
-
-

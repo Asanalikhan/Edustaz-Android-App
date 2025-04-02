@@ -1,4 +1,4 @@
-package com.example.edustaz.ui.screen
+package com.example.edustaz.ui.screen.home
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
@@ -23,7 +23,7 @@ import com.example.edustaz.data.MaterialItem
 import com.example.edustaz.ui.components.GridScreen
 import com.example.edustaz.ui.components.InfiniteMaterialList
 import com.example.edustaz.ui.components.Timer
-import com.example.edustaz.ui.components.TopAppBar
+import com.example.edustaz.ui.navigation.TopAppBar
 import com.example.edustaz.ui.navigation.BottomNavBar
 import com.example.edustaz.ui.theme.MontserratFont
 
