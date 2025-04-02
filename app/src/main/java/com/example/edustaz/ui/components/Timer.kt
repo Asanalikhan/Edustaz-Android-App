@@ -36,7 +36,8 @@ import java.util.Locale
 @Composable
 fun Timer() {
 
-    val targetDate = SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault()).parse("2025-04-10 12:00")
+    val targetDate =
+        SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault()).parse("2025-04-10 12:00")
     var remainingTime by remember { mutableStateOf(getTimeRemaining(targetDate)) }
 
     LaunchedEffect(remainingTime) {
@@ -93,15 +94,15 @@ fun Timer() {
     }
 }
 
-fun getTimeRemaining(targetDate: Date?): TimeRemaining{
-    if(targetDate == null) return TimeRemaining(0, 0, 0, 0)
+fun getTimeRemaining(targetDate: Date?): TimeRemaining {
+    if (targetDate == null) return TimeRemaining(0, 0, 0, 0)
 
     val currentTime = System.currentTimeMillis()
     val difference = targetDate.time - currentTime
 
     val days = (difference / (1000 * 60 * 60 * 24)).toInt()
-    val hours = ((difference / (1000 * 60 * 60 )) % 24).toInt()
-    val minutes = ((difference / (1000 * 60 )) % 60).toInt()
+    val hours = ((difference / (1000 * 60 * 60)) % 24).toInt()
+    val minutes = ((difference / (1000 * 60)) % 60).toInt()
     val seconds = ((difference / 1000 % 60)).toInt()
 
     return TimeRemaining(days, hours, minutes, seconds)

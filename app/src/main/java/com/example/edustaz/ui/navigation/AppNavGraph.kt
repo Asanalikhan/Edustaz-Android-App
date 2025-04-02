@@ -32,16 +32,16 @@ fun AppNavGraph(navController: NavHostController) {
             HomePage(title = "Басты бет", navController = navController)
         }
         composable("atestat") {
-            AtestatPage()
+            AtestatPage(title = "Атестатияға дайындық", navController = navController)
         }
         composable("course") {
-            CoursePage()
+            CoursePage(title = "Курстар", navController = navController)
         }
         composable("materials") {
             MaterialsPage(title = "Материалдар", navController = navController)
         }
         composable("olympiad") {
-            OlympiadPage()
+            OlympiadPage(title = "Олимпиада", navController = navController)
         }
     }
 }

@@ -1,7 +1,6 @@
 package com.example.edustaz.ui.screen
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -9,34 +8,26 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.CenterAlignedTopAppBar
-import androidx.compose.material3.CheckboxDefaults.colors
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
-import com.example.edustaz.R
-import com.example.edustaz.data.BottomNavItem
 import com.example.edustaz.data.MaterialItem
 import com.example.edustaz.ui.components.GridScreen
 import com.example.edustaz.ui.components.InfiniteMaterialList
 import com.example.edustaz.ui.components.Timer
+import com.example.edustaz.ui.components.TopAppBar
 import com.example.edustaz.ui.navigation.BottomNavBar
 import com.example.edustaz.ui.theme.MontserratFont
 
-val sampleMaterials = listOf(
+private val sampleMaterials = listOf(
     MaterialItem(
         "Балалардың сауат ашу деңгейі", "Сәкен Серікұлы", 713, 713
     ),
@@ -44,13 +35,6 @@ val sampleMaterials = listOf(
     MaterialItem("Математикалық логика негіздері", "Айжан Баймұратова", 530, 870),
     MaterialItem("Физикалық заңдар", "Жандос Мұхаммед", 420, 690),
     MaterialItem("Абайдың қара сөздері", "Айгүл Нұрбекова", 860, 1020)
-)
-val navItems = listOf(
-    BottomNavItem("home", "home", R.drawable.ic_home),
-    BottomNavItem("materials", "materials", R.drawable.ic_materials),
-    BottomNavItem("atestat", "atestat", R.drawable.ic_atestat),
-    BottomNavItem("course", "course", R.drawable.ic_course),
-    BottomNavItem("olympiad", "olympiad", R.drawable.ic_olympiad)
 )
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -60,38 +44,21 @@ fun HomePage(
     navController: NavController
 ) {
 
-    Scaffold(modifier = Modifier.fillMaxSize().background(Color.White), topBar = {
-        CenterAlignedTopAppBar(title = {
-            Text(
-                text = title,
-                fontFamily = MontserratFont,
-                fontWeight = FontWeight.SemiBold,
-                fontSize = 22.sp
+    Scaffold(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color.White),
+        topBar = {
+            TopAppBar(
+                title = title,
+                navController = navController
             )
-        }, navigationIcon = {
-            IconButton(onClick = { /*Todo*/ }, Modifier.padding(45.dp, 0.dp)) {
-                Icon(
-                    painter = painterResource(R.drawable.frame_12645),
-                    contentDescription = "Home"
-                )
-            }
-        }, actions = {
-            IconButton(onClick = { /*Todo*/ }, Modifier.padding(45.dp, 0.dp)) {
-                Icon(
-                    painter = painterResource(R.drawable.mi_notification),
-                    contentDescription = "Notification"
-                )
-            }
-        },
-            colors = TopAppBarDefaults.centerAlignedTopAppBarColors(containerColor = Color.White)
-        )
-    }, bottomBar = {
-        BottomNavBar(
-            items = navItems,
-            navController = navController,
-            onItemClick = { navController.navigate(it.route) }
-        )
-    }
+        }, bottomBar = {
+            BottomNavBar(
+                navController = navController,
+                onItemClick = { navController.navigate(it.route) }
+            )
+        }
 
     ) { values ->
         Column(

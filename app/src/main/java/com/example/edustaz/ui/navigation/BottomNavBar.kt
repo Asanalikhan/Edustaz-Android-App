@@ -10,11 +10,19 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
+import com.example.edustaz.R
 import com.example.edustaz.data.BottomNavItem
+
+private val navItems = listOf(
+    BottomNavItem("home", "home", R.drawable.ic_home),
+    BottomNavItem("materials", "materials", R.drawable.ic_materials),
+    BottomNavItem("atestat", "atestat", R.drawable.ic_atestat),
+    BottomNavItem("course", "course", R.drawable.ic_course),
+    BottomNavItem("olympiad", "olympiad", R.drawable.ic_olympiad)
+)
 
 @Composable
 fun BottomNavBar(
-    items: List<BottomNavItem>,
     navController: NavController,
     onItemClick: (BottomNavItem) -> Unit,
 ) {
@@ -23,7 +31,7 @@ fun BottomNavBar(
         tonalElevation = 5.dp,
         containerColor = Color.White
     ) {
-        items.forEach { item ->
+        navItems.forEach { item ->
             val selected = item.route == backStackEntry.value?.destination?.route
             NavigationBarItem(
                 selected = selected,
