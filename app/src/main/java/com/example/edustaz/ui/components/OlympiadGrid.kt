@@ -1,6 +1,7 @@
 package com.example.edustaz.ui.components
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -62,7 +63,7 @@ private val images = listOf(
 )
 
 @Composable
-fun OlympiadGrid() {
+fun OlympiadGrid(onItemClick: (String) -> Unit) {
 
     LazyVerticalGrid(
         columns = GridCells.Fixed(3),
@@ -71,19 +72,24 @@ fun OlympiadGrid() {
             .fillMaxWidth()
     ) {
         items(titles.zip(images)) { (title, icon) ->
-            GridItem(iconRes = icon, text = title)
+            GridItem(
+                iconRes = icon,
+                text = title,
+                onClick = { onItemClick(title) }
+            )
         }
     }
 }
 
 @Composable
-private fun GridItem(iconRes: Int, text: String) {
+private fun GridItem(iconRes: Int, text: String, onClick: () -> Unit) {
     Card(
         modifier = Modifier
             .fillMaxSize()
             .size(110.dp)
             .padding(7.dp)
-            .background(Color.White),
+            .background(Color.White)
+            .clickable { onClick() },
         shape = RoundedCornerShape(5.dp)
     ) {
         Column(

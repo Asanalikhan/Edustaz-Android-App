@@ -43,7 +43,8 @@ fun OlympiadPage(
         }
     ) { values ->
 
-        var selectedOption by remember { mutableStateOf("Ұстаздарға") }
+        var selectedType by remember { mutableStateOf("Ұстаздарға") }
+        var selectedOption by remember { mutableStateOf<String?>(null) }
 
         Column(
             modifier = Modifier
@@ -51,13 +52,24 @@ fun OlympiadPage(
                 .padding(values)
                 .background(Color(0xFFF5F5F5))
         ) {
-
             CustomSwitch(
-                selectedOption = selectedOption,
-                onOptionSelected = { selectedOption = it }
+                selectedOption = selectedType,
+                onOptionSelected = { selectedType = it }
             )
-            OlympiadGrid()
 
+            if (selectedOption == null) {
+                OlympiadGrid(
+                    onItemClick = {
+                        selectedOption = it
+                    }
+                )
+            } else {
+                OlympiadDetailed(
+                    subject = selectedOption!!,
+                    type = selectedType == "Ұстаздарға",
+                    onBack = {selectedOption = null}
+                )
+            }
         }
     }
 }
