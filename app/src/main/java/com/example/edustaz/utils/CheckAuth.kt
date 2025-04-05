@@ -21,7 +21,7 @@ class CheckAuth {
                 && checkName(signupRequest.firstName)
                 && checkName(signupRequest.lastName)
                 && checkName(signupRequest.fatherName)
-/**                && checkPassword(signupRequest.password)         */
+        /**                && checkPassword(signupRequest.password)         */
     }
 
     fun checkLogin(email: String, password: String): Boolean {
