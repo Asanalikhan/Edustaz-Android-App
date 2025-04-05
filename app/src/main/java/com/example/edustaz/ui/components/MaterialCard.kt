@@ -22,7 +22,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.edustaz.R
-import com.example.edustaz.data.MaterialItem
+import com.example.edustaz.data.model.MaterialItem
 import com.example.edustaz.ui.theme.MontserratFont
 
 @Composable

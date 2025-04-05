@@ -16,10 +16,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import com.example.edustaz.data.MaterialItem
+import com.example.edustaz.data.model.MaterialItem
 import com.example.edustaz.ui.components.GridScreen
 import com.example.edustaz.ui.components.InfiniteMaterialList
 import com.example.edustaz.ui.components.Timer
@@ -104,7 +105,8 @@ fun HomePage(
                     fontSize = 12.sp,
                     modifier = Modifier
                         .align(Alignment.CenterHorizontally)
-                        .padding(7.dp, 0.dp)
+                        .padding(7.dp, 0.dp),
+                    textAlign = TextAlign.Center
                 )
 
             }

@@ -28,7 +28,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.edustaz.R
-import com.example.edustaz.data.ContentItem
+import com.example.edustaz.data.model.ContentItem
 import com.example.edustaz.ui.components.Button
 import com.example.edustaz.ui.components.NumberedList
 import com.example.edustaz.ui.components.OlympiadCard

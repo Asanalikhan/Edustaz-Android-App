@@ -26,7 +26,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.edustaz.R
-import com.example.edustaz.data.TimeRemaining
+import com.example.edustaz.data.model.TimeRemaining
 import com.example.edustaz.ui.theme.MontserratFont
 import kotlinx.coroutines.delay
 import java.text.SimpleDateFormat

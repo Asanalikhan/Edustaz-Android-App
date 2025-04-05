@@ -1,4 +1,4 @@
-package com.example.edustaz.data
+package com.example.edustaz.data.model
 
 data class BottomNavItem(
     val name: String,

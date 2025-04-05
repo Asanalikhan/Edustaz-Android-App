@@ -16,7 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.example.edustaz.R
-import com.example.edustaz.data.MaterialItem
+import com.example.edustaz.data.model.MaterialItem
 
 @Composable
 fun InfiniteMaterialList(materials: List<MaterialItem>) {

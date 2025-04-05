@@ -17,19 +17,23 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.example.edustaz.data.model.LoginRequest
 import com.example.edustaz.ui.components.Button
 import com.example.edustaz.ui.components.EmailTextField
 import com.example.edustaz.ui.components.PasswordTextField
 import com.example.edustaz.ui.components.RememberMeCheckBox
+import com.example.edustaz.utils.CheckAuth
 
 @Composable
 fun LoginPage(
     onNavigateToRegister: () -> Unit,
     onNavigateToReset: () -> Unit,
-    onNavigateToLogin: () -> Unit
+    onNavigateToLogin: () -> Unit,
+    viewModel: AuthViewModel
 ) {
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
+    val checkAuth = CheckAuth()
 
     Column(
         Modifier
@@ -61,7 +65,12 @@ fun LoginPage(
         Spacer(modifier = Modifier.padding(0.dp, 8.dp))
         RememberMeCheckBox(modifier = Modifier)
         Spacer(modifier = Modifier.padding(0.dp, 71.dp))
-        Button(onClick = { onNavigateToLogin() }, text = "Кіру")
+        Button(onClick = {
+            if (checkAuth.checkLogin(email = email, password = password)) {
+                viewModel.login(loginRequest = LoginRequest(email, password))
+                onNavigateToLogin()
+            }
+        }, text = "Кіру")
         Spacer(modifier = Modifier.padding(0.dp, 16.dp))
         Text(
             "Тіркелмегенсізбе?",

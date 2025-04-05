@@ -11,7 +11,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.edustaz.R
-import com.example.edustaz.data.BottomNavItem
+import com.example.edustaz.data.model.BottomNavItem
 
 private val navItems = listOf(
     BottomNavItem("home", "home", R.drawable.ic_home),
