@@ -29,7 +29,6 @@ import com.example.edustaz.ui.components.EmailTextField
 import com.example.edustaz.ui.components.PasswordTextField
 import com.example.edustaz.ui.components.RememberMeCheckBox
 import com.example.edustaz.ui.theme.MontserratFont
-import com.example.edustaz.utils.CheckAuth
 
 @Composable
 fun LoginPage(
@@ -40,7 +39,6 @@ fun LoginPage(
 ) {
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
-    val checkAuth = CheckAuth()
     val loginResponse = viewModel.loginResponse.observeAsState()
 
     var isLoading by remember { mutableStateOf(false) }
@@ -78,10 +76,8 @@ fun LoginPage(
         RememberMeCheckBox(modifier = Modifier)
         Spacer(modifier = Modifier.padding(0.dp, 71.dp))
         Button(onClick = {
-            if (checkAuth.checkLogin(email = email, password = password)) {
-                isLoading = true
-                viewModel.login(LoginRequest(email, password))
-            }
+            isLoading = true
+            viewModel.login(LoginRequest(email, password))
         }, text = "Кіру")
         if (isLoading) {
             CircularProgressIndicator(modifier = Modifier.padding(top = 16.dp))

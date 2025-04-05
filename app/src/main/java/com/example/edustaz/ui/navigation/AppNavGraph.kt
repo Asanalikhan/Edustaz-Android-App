@@ -29,10 +29,8 @@ fun AppNavGraph(navController: NavHostController) {
             )
         }
         composable("register") {
-            val authViewModel: AuthViewModel = viewModel()
             RegistrationPage(
-                onNavigateBack = { navController.popBackStack() },
-                viewModel = authViewModel
+                onNavigateToLogin = { navController.navigate("login") },
             )
         }
         composable("reset") {

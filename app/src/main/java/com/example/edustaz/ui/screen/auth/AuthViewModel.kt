@@ -1,13 +1,11 @@
 package com.example.edustaz.ui.screen.auth
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.edustaz.data.model.LoginRequest
 import com.example.edustaz.data.model.LoginResponse
-import com.example.edustaz.data.model.SignupRequest
 import com.example.edustaz.data.remote.NetworkResponse
 import com.example.edustaz.data.remote.RetrofitClient
 import kotlinx.coroutines.Dispatchers
@@ -19,10 +17,6 @@ class AuthViewModel : ViewModel() {
 
     private val _loginResponse = MutableLiveData<NetworkResponse<LoginResponse>>()
     val loginResponse: LiveData<NetworkResponse<LoginResponse>> = _loginResponse
-
-    fun signup(signupRequest: SignupRequest) {
-        Log.d("Signup:", signupRequest.email)
-    }
 
     fun login(loginRequest: LoginRequest) {
         viewModelScope.launch(Dispatchers.IO) {

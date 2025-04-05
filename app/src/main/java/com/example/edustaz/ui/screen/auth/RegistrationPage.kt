@@ -19,17 +19,14 @@ import androidx.compose.ui.unit.dp
 import com.example.edustaz.ui.components.Button
 import com.example.edustaz.ui.components.EmailTextField
 import com.example.edustaz.ui.components.PasswordTextField
-import com.example.edustaz.utils.CheckAuth
 
 @Composable
 fun RegistrationPage(
-    onNavigateBack: () -> Unit,
-    viewModel: AuthViewModel
+    onNavigateToLogin: () -> Unit,
 ) {
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var confirmPassword by remember { mutableStateOf("") }
-    val checkAuth = CheckAuth()
 
     Column(
         Modifier
@@ -71,7 +68,7 @@ fun RegistrationPage(
 
         Spacer(modifier = Modifier.padding(0.dp, 24.dp))
         Button(onClick = {
-            /*Todo*/
+            onNavigateToLogin()
         }, text = "Тіркелу")
 
         Spacer(modifier = Modifier.padding(0.dp, 16.dp))
