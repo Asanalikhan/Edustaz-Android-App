@@ -1,18 +1,25 @@
 package com.example.edustaz.ui.screen.olympiad
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.navigation.NavController
+import com.example.edustaz.data.remote.NetworkResponse
 import com.example.edustaz.ui.components.CustomSwitch
 import com.example.edustaz.ui.components.OlympiadGrid
 import com.example.edustaz.ui.navigation.BottomNavBar
@@ -21,7 +28,8 @@ import com.example.edustaz.ui.navigation.TopAppBar
 @Composable
 fun OlympiadPage(
     title: String,
-    navController: NavController
+    navController: NavController,
+    viewModel: OlympiadViewModel,
 ) {
     Scaffold(
         modifier = Modifier
@@ -45,6 +53,10 @@ fun OlympiadPage(
 
         var selectedType by remember { mutableStateOf("Ұстаздарға") }
         var selectedOption by remember { mutableStateOf<String?>(null) }
+        LaunchedEffect(Unit) {
+            viewModel.getList("Basic dXNlckBleGFtcGxlLmNvbTpzdHJpbmc=")
+        }
+        val responseOlympiad = viewModel.olympiadResponse.observeAsState()
 
         Column(
             modifier = Modifier
@@ -58,16 +70,40 @@ fun OlympiadPage(
             )
 
             if (selectedOption == null) {
-                OlympiadGrid(
-                    onItemClick = {
-                        selectedOption = it
+                when (val response = responseOlympiad.value) {
+                    is NetworkResponse.Success -> {
+                        OlympiadGrid(
+                            onItemClick = { selectedOption = it },
+                            list = response.data
+                        )
                     }
-                )
+
+                    is NetworkResponse.Error -> {
+                        Box(
+                            modifier = Modifier.fillMaxSize(),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Text("Error")
+                        }
+                    }
+
+                    NetworkResponse.Loading -> {
+                        Box(
+                            modifier = Modifier
+                                .fillMaxSize(),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            CircularProgressIndicator()
+                        }
+                    }
+
+                    null -> {}
+                }
             } else {
                 OlympiadDetailed(
                     subject = selectedOption!!,
                     type = selectedType == "Ұстаздарға",
-                    onBack = {selectedOption = null}
+                    onBack = { selectedOption = null }
                 )
             }
         }
