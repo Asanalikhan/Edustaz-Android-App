@@ -37,7 +37,7 @@ fun CustomSwitch(
     selectedOption: String,
     onOptionSelected: (String) -> Unit
 ) {
-    val options = listOf("Ұстаздарға", "Оқушыларға")
+    val options = listOf("Ұстаздар", "Оқушылар")
     val selectedIndex = options.indexOf(selectedOption)
     val screenWidth = LocalConfiguration.current.screenWidthDp.dp
     val density = LocalDensity.current

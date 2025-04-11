@@ -19,11 +19,13 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.edustaz.data.model.LoginRequest
 import com.example.edustaz.data.remote.NetworkResponse
+import com.example.edustaz.data.remote.PreferencesManager
 import com.example.edustaz.ui.components.Button
 import com.example.edustaz.ui.components.EmailTextField
 import com.example.edustaz.ui.components.PasswordTextField
@@ -111,6 +113,8 @@ fun LoginPage(
                 if (isLoading) {
                     isLoading = false
                     errorMessage = ""
+                    val sharedPreferences = PreferencesManager(context = LocalContext.current)
+                    sharedPreferences.saveString("user_token", value.data.access)
                     onNavigateToLogin()
                     Log.d("LoginPage", "Login Successful")
                 }

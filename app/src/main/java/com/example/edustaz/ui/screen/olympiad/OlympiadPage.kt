@@ -18,8 +18,10 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavController
 import com.example.edustaz.data.remote.NetworkResponse
+import com.example.edustaz.data.remote.PreferencesManager
 import com.example.edustaz.ui.components.CustomSwitch
 import com.example.edustaz.ui.components.OlympiadGrid
 import com.example.edustaz.ui.navigation.BottomNavBar
@@ -51,10 +53,13 @@ fun OlympiadPage(
         }
     ) { values ->
 
-        var selectedType by remember { mutableStateOf("Ұстаздарға") }
+        var selectedType by remember { mutableStateOf("Ұстаздар") }
         var selectedOption by remember { mutableStateOf<String?>(null) }
+        val sharedPreferences = PreferencesManager(context = LocalContext.current)
+        val token = sharedPreferences.getString("user_token")
+
         LaunchedEffect(Unit) {
-            viewModel.getList("Basic dXNlckBleGFtcGxlLmNvbTpzdHJpbmc=")
+            viewModel.getList(token = token)
         }
         val responseOlympiad = viewModel.olympiadResponse.observeAsState()
 
@@ -72,9 +77,12 @@ fun OlympiadPage(
             if (selectedOption == null) {
                 when (val response = responseOlympiad.value) {
                     is NetworkResponse.Success -> {
+                        val filteredList = response.data.filter {
+                            it.category.title == selectedType
+                        }
                         OlympiadGrid(
                             onItemClick = { selectedOption = it },
-                            list = response.data
+                            list = filteredList,
                         )
                     }
 
@@ -83,7 +91,7 @@ fun OlympiadPage(
                             modifier = Modifier.fillMaxSize(),
                             contentAlignment = Alignment.Center
                         ) {
-                            Text("Error")
+                            Text(response.message)
                         }
                     }
 
@@ -102,7 +110,7 @@ fun OlympiadPage(
             } else {
                 OlympiadDetailed(
                     subject = selectedOption!!,
-                    type = selectedType == "Ұстаздарға",
+                    type = selectedType == "Ұстаздар",
                     onBack = { selectedOption = null }
                 )
             }

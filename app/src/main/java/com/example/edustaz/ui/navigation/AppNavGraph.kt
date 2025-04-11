@@ -13,6 +13,7 @@ import com.example.edustaz.ui.screen.auth.ResetPasswordPage
 import com.example.edustaz.ui.screen.course.CoursePage
 import com.example.edustaz.ui.screen.home.HomePage
 import com.example.edustaz.ui.screen.materials.MaterialsPage
+import com.example.edustaz.ui.screen.materials.MaterialsViewModel
 import com.example.edustaz.ui.screen.olympiad.OlympiadPage
 import com.example.edustaz.ui.screen.olympiad.OlympiadViewModel
 
@@ -47,7 +48,11 @@ fun AppNavGraph(navController: NavHostController) {
             CoursePage(title = "Курстар", navController = navController)
         }
         composable("materials") {
-            MaterialsPage(title = "Материалдар", navController = navController)
+            val viewModel: MaterialsViewModel = viewModel()
+            MaterialsPage(
+                title = "Материалдар",
+                navController = navController,
+                viewModel = viewModel)
         }
         composable("olympiad") {
             val viewModel: OlympiadViewModel = viewModel()

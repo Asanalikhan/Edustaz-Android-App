@@ -57,14 +57,18 @@ fun Qatyshushy(onItemClick: () -> Unit) {
                 .padding(25.dp, 0.dp, 0.dp, 120.dp)
         ) {
             TextButton(
-                onClick = { onItemClick() },
+                onClick = {
+                    if (text != "") {
+                        onItemClick()
+                    }
+                },
                 modifier = Modifier
                     .height(30.dp)
                     .width(80.dp),
                 shape = RoundedCornerShape(5.dp),
                 colors = ButtonDefaults.buttonColors(
                     contentColor = Color.White,
-                    containerColor = Color.Green
+                    containerColor = Color(0xFF298634)
                 ),
                 contentPadding = PaddingValues(0.dp)
             ) {
@@ -85,7 +89,7 @@ fun Qatyshushy(onItemClick: () -> Unit) {
                 shape = RoundedCornerShape(5.dp),
                 colors = ButtonDefaults.textButtonColors(
                     contentColor = Color.White,
-                    containerColor = Color.Red
+                    containerColor = Color(0xFFFE5E5E)
                 ),
                 contentPadding = PaddingValues(0.dp)
             ) {

@@ -26,10 +26,10 @@ import com.example.edustaz.ui.theme.MontserratFont
 @Composable
 fun OlympiadGrid(
     onItemClick: (String) -> Unit,
-    list: List<OlympiadListResponseItem>
+    list: List<OlympiadListResponseItem>,
 ) {
 
-    val olympiadList = list
+    var olympiadList = list
 
     LazyVerticalGrid(
         columns = GridCells.Fixed(3),

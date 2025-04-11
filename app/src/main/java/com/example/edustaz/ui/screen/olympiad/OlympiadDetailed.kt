@@ -93,14 +93,15 @@ fun OlympiadDetailed(subject: String, type: Boolean, onBack: () -> Unit) {
                     .padding(20.dp, 10.dp)
             ) {
                 Button(
-                    onClick = { clicked = true },
+                    onClick = {
+                        clicked = true
+                    },
                     text = "Қатысушы қосу"
                 )
             }
             Spacer(modifier = Modifier.height(10.dp))
             NumberedList()
         }
-
 
     }
 }

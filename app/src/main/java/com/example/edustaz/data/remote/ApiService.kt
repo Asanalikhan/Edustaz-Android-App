@@ -1,7 +1,9 @@
 package com.example.edustaz.data.remote
 
+import com.example.edustaz.data.model.FilterResponse
 import com.example.edustaz.data.model.LoginRequest
 import com.example.edustaz.data.model.LoginResponse
+import com.example.edustaz.data.model.MaterialsResponse
 import com.example.edustaz.data.model.OlympiadListResponseItem
 import retrofit2.Response
 import retrofit2.http.Body
@@ -21,4 +23,13 @@ interface ApiService {
         @Header("Authorization") token: String
     ): Response<List<OlympiadListResponseItem>>
 
+    @GET("materials/filter/")
+    suspend fun getFilter(
+        @Header("Authorization") token: String
+    ): Response<FilterResponse>
+
+    @GET("materilas/materials/")
+    suspend fun getMaterials(
+        @Header("Authorization") token: String
+    ): Response<MaterialsResponse>
 }
