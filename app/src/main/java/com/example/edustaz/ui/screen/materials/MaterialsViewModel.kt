@@ -58,8 +58,6 @@ class MaterialsViewModel : ViewModel() {
                 _materialsResponse.postValue(NetworkResponse.Error("$e"))
             }
         }
-
     }
-
 
 }

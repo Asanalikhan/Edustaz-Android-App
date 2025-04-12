@@ -28,7 +28,7 @@ interface ApiService {
         @Header("Authorization") token: String
     ): Response<FilterResponse>
 
-    @GET("materilas/materials/")
+    @GET("materials/materials/")
     suspend fun getMaterials(
         @Header("Authorization") token: String
     ): Response<MaterialsResponse>

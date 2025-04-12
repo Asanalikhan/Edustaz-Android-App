@@ -29,15 +29,13 @@ fun OlympiadGrid(
     list: List<OlympiadListResponseItem>,
 ) {
 
-    var olympiadList = list
-
     LazyVerticalGrid(
         columns = GridCells.Fixed(3),
         modifier = Modifier
             .padding(16.dp)
             .fillMaxWidth()
     ) {
-        items(olympiadList) { title ->
+        items(list) { title ->
             GridItem(
                 text = title.shortName,
                 onClick = { onItemClick(title.shortName) }

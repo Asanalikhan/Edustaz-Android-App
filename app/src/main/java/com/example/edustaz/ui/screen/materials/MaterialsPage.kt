@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -112,8 +113,13 @@ fun MaterialsPage(
                     .padding(16.dp),
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
-                DirectionDropdown("Бағыт", onItemSelected = {
-                    bagyt = it }, groupItems,)
+                DirectionDropdown(
+                    "Бағыт",
+                    onItemSelected = {
+                        bagyt = it
+                    },
+                    groupItems,
+                )
                 DirectionDropdown("Сынып", onItemSelected = {
                     synyp = it
                 }, classItems)
@@ -122,7 +128,21 @@ fun MaterialsPage(
                 }, subjectItems)
             }
 
+            when (val response = materialsResponse.value) {
+                is NetworkResponse.Success -> {
+                    MaterialsList(materials = response.data.results)
+                }
 
+                is NetworkResponse.Error -> {
+                    Text(response.message)
+                }
+
+                NetworkResponse.Loading -> {
+                    CircularProgressIndicator()
+                }
+
+                null -> {}
+            }
         }
     }
 }
