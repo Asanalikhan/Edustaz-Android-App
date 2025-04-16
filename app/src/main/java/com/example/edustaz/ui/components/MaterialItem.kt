@@ -1,6 +1,7 @@
 package com.example.edustaz.ui.components
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -19,12 +20,16 @@ import com.example.edustaz.data.model.MaterialsResponse
 import com.example.edustaz.ui.theme.MontserratFont
 
 @Composable
-fun MaterialItem(item: MaterialsResponse.Result) {
+fun MaterialItem(
+    item: MaterialsResponse.Result,
+    onItemClick: (Int) -> Unit
+) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
             .background(Color.White)
             .padding(12.dp)
+            .clickable { onItemClick(item.id) }
     ) {
         Text(
             text = item.title,

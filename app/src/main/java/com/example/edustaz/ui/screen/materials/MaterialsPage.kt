@@ -78,6 +78,9 @@ fun MaterialsPage(
 
         val sharedPreferences = PreferencesManager(context = LocalContext.current)
         val token = sharedPreferences.getString("user_token")
+
+        var materialClicked by remember { mutableIntStateOf(0) }
+
         LaunchedEffect(Unit) {
             viewModel.getFilter(token)
             viewModel.getMaterials(token)
@@ -117,20 +120,37 @@ fun MaterialsPage(
                     "Бағыт",
                     onItemSelected = {
                         bagyt = it
+                        materialClicked = 0
                     },
                     groupItems,
                 )
                 DirectionDropdown("Сынып", onItemSelected = {
                     synyp = it
+                    materialClicked = 0
                 }, classItems)
                 DirectionDropdown("Пән", onItemSelected = {
                     pan = it
+                    materialClicked = 0
                 }, subjectItems)
             }
 
             when (val response = materialsResponse.value) {
                 is NetworkResponse.Success -> {
-                    MaterialsList(materials = response.data.results)
+                    val filteredMaterials = response.data.results.filter { material ->
+                        (bagyt == 0 || material.group.id == bagyt) &&
+                                (synyp == 0 || material.className.id == synyp) &&
+                                (pan == 0 || material.subject.id == pan) &&
+                                material.title.contains(query, ignoreCase = true)
+                    }
+                    if (filteredMaterials.isEmpty()) {
+                        Text("Нәтижелер табылмады", modifier = Modifier.padding(16.dp))
+                    } else if (materialClicked == 0) {
+                        MaterialsList(materials = filteredMaterials, onItemClick = {
+                            materialClicked = it
+                        })
+                    } else {
+                        MaterialsDetailed(materialClicked, onBackClick = { materialClicked = 0 })
+                    }
                 }
 
                 is NetworkResponse.Error -> {

@@ -12,14 +12,17 @@ import com.example.edustaz.data.model.MaterialsResponse
 import com.example.edustaz.ui.components.MaterialItem
 
 @Composable
-fun MaterialsList(materials: List<MaterialsResponse.Result>) {
+fun MaterialsList(
+    materials: List<MaterialsResponse.Result>,
+    onItemClick: (Int) -> Unit
+) {
     LazyColumn(
         modifier = Modifier.fillMaxSize(),
         contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp),
         verticalArrangement = Arrangement.spacedBy(12.dp)
     ) {
         items(materials) { item ->
-            MaterialItem(item)
+            MaterialItem(item, onItemClick = onItemClick)
         }
     }
 }
