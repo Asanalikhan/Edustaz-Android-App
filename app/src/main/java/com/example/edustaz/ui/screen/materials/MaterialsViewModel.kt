@@ -5,9 +5,11 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.edustaz.data.model.FilterResponse
+import com.example.edustaz.data.model.MaterialResponse
 import com.example.edustaz.data.model.MaterialsResponse
 import com.example.edustaz.data.remote.NetworkResponse
 import com.example.edustaz.data.remote.RetrofitClient
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class MaterialsViewModel : ViewModel() {
@@ -19,6 +21,9 @@ class MaterialsViewModel : ViewModel() {
 
     private val _materialsResponse = MutableLiveData<NetworkResponse<MaterialsResponse>>()
     val materialsResponse: LiveData<NetworkResponse<MaterialsResponse>> = _materialsResponse
+
+    private val _materialsByIdResponse = MutableLiveData<NetworkResponse<MaterialResponse>>()
+    val materialByIdResponse: LiveData<NetworkResponse<MaterialResponse>> = _materialsByIdResponse
 
     fun getFilter(token: String) {
         viewModelScope.launch {
@@ -56,6 +61,26 @@ class MaterialsViewModel : ViewModel() {
                 }
             } catch (e: Exception) {
                 _materialsResponse.postValue(NetworkResponse.Error("$e"))
+            }
+        }
+    }
+
+    fun getMaterialById(token: String, id: Int) {
+        viewModelScope.launch(Dispatchers.IO) {
+            _materialsByIdResponse.postValue(NetworkResponse.Loading)
+            try {
+                val response = apiService.getMatarialById(token, id)
+                if (response.isSuccessful) {
+                    response.body()?.let {
+                        _materialsByIdResponse.postValue(NetworkResponse.Success(it))
+                    } ?: run {
+                        _materialsByIdResponse.postValue(NetworkResponse.Error("Empty Body"))
+                    }
+                } else {
+                    _materialsByIdResponse.postValue(NetworkResponse.Error("${response.message()}"))
+                }
+            } catch (e: Exception) {
+                _materialsByIdResponse.postValue(NetworkResponse.Error("$e"))
             }
         }
     }

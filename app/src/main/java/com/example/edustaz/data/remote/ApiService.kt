@@ -3,6 +3,7 @@ package com.example.edustaz.data.remote
 import com.example.edustaz.data.model.FilterResponse
 import com.example.edustaz.data.model.LoginRequest
 import com.example.edustaz.data.model.LoginResponse
+import com.example.edustaz.data.model.MaterialResponse
 import com.example.edustaz.data.model.MaterialsResponse
 import com.example.edustaz.data.model.OlympiadListResponseItem
 import retrofit2.Response
@@ -10,6 +11,7 @@ import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.POST
+import retrofit2.http.Path
 
 interface ApiService {
 
@@ -32,4 +34,10 @@ interface ApiService {
     suspend fun getMaterials(
         @Header("Authorization") token: String
     ): Response<MaterialsResponse>
+
+    @GET("materials/materials/{id}")
+    suspend fun getMatarialById(
+        @Header("Authorization") token: String,
+        @Path("id") id: Int
+    ): Response<MaterialResponse>
 }

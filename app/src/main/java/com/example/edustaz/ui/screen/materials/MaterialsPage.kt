@@ -20,6 +20,7 @@ import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
@@ -149,19 +150,43 @@ fun MaterialsPage(
                             materialClicked = it
                         })
                     } else {
-                        MaterialsDetailed(materialClicked, onBackClick = { materialClicked = 0 })
+                        MaterialsDetailed(
+                            materialClicked,
+                            onBackClick = { materialClicked = 0 },
+                            viewModel = viewModel
+                        )
                     }
                 }
 
                 is NetworkResponse.Error -> {
-                    Text(response.message)
+                    Box(
+                        modifier = Modifier
+                            .fillMaxSize(),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Text(response.message)
+                    }
                 }
 
                 NetworkResponse.Loading -> {
-                    CircularProgressIndicator()
+                    Box(
+                        modifier = Modifier
+                            .fillMaxSize(),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        CircularProgressIndicator()
+                    }
                 }
 
-                null -> {}
+                null -> {
+                    Box(
+                        modifier = Modifier
+                            .fillMaxSize(),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Text("Мәлімет табылмады", fontSize = 16.sp)
+                    }
+                }
             }
         }
     }
