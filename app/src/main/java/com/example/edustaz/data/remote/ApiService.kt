@@ -6,10 +6,13 @@ import com.example.edustaz.data.model.LoginResponse
 import com.example.edustaz.data.model.MaterialResponse
 import com.example.edustaz.data.model.MaterialsResponse
 import com.example.edustaz.data.model.OlympiadListResponseItem
+import com.example.edustaz.data.model.ProfileResponse
+import com.example.edustaz.data.model.ProfileUpdateRequest
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Header
+import retrofit2.http.PATCH
 import retrofit2.http.POST
 import retrofit2.http.Path
 
@@ -40,4 +43,16 @@ interface ApiService {
         @Header("Authorization") token: String,
         @Path("id") id: Int
     ): Response<MaterialResponse>
+
+    @GET("user/profile")
+    suspend fun getProfile(
+        @Header("Authorization") token: String
+    ): Response<ProfileResponse>
+
+    @PATCH("user/profile")
+    suspend fun patchProfile(
+        @Header("Authorization") token: String,
+        @Body profileData: ProfileUpdateRequest
+    ): Response<ProfileResponse>
+
 }

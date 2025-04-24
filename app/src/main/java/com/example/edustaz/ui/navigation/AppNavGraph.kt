@@ -18,6 +18,7 @@ import com.example.edustaz.ui.screen.notification.NotificationPage
 import com.example.edustaz.ui.screen.olympiad.OlympiadPage
 import com.example.edustaz.ui.screen.olympiad.OlympiadViewModel
 import com.example.edustaz.ui.screen.profile.ProfilePage
+import com.example.edustaz.ui.screen.profile.ProfileViewModel
 
 @Composable
 fun AppNavGraph(navController: NavHostController) {
@@ -72,9 +73,11 @@ fun AppNavGraph(navController: NavHostController) {
             )
         }
         composable("profile") {
+            val profileViewModel: ProfileViewModel = viewModel()
             ProfilePage(
                 title = "Профиль",
-                navController = navController
+                navController = navController,
+                viewModel = profileViewModel
             )
         }
     }

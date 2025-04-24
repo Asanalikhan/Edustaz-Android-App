@@ -80,6 +80,7 @@ fun LoginPage(
         Button(onClick = {
             isLoading = true
             viewModel.login(LoginRequest(email, password))
+            onNavigateToLogin()
         }, text = "Кіру")
         if (isLoading) {
             CircularProgressIndicator(modifier = Modifier.padding(top = 16.dp))

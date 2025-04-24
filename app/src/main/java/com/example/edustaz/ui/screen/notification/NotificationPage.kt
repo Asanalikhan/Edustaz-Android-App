@@ -65,6 +65,7 @@ fun NotificationPage(
             modifier = Modifier
                 .padding(values)
                 .fillMaxSize()
+                .background(Color(0xFFF5F5F5))
         ) {
             items(notifications) { (title, message, time) ->
                 NotificationCard(title = title, message = message, time = time)
