@@ -30,7 +30,11 @@ import com.example.edustaz.R
 import com.example.edustaz.ui.theme.MontserratFont
 
 @Composable
-fun SubjectDetailsPage(subject: String, onBack: () -> Unit) {
+fun SubjectDetailsPage(
+    subject: String,
+    onBack: () -> Unit,
+    onStartTest: () -> Unit,
+) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -125,7 +129,7 @@ fun SubjectDetailsPage(subject: String, onBack: () -> Unit) {
 
         Button(
             onClick = {
-                // navController.navigate("startTest/$subject")
+                onStartTest()
             },
             modifier = Modifier
                 .fillMaxWidth()

@@ -84,7 +84,10 @@ fun AtestatPage(
                 ) {
                     SubjectDetailsPage(
                         subject = detailed,
-                        onBack = { isClicked = false }
+                        onBack = { isClicked = false },
+                        onStartTest = {
+                            navController.navigate("test")
+                        }
                     )
                 }
             }
