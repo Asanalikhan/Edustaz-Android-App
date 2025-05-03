@@ -1,8 +1,8 @@
 package com.example.edustaz.ui.screen.olympiad
 
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateMapOf
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import com.example.edustaz.data.model.Question
@@ -43,7 +43,7 @@ class QuizViewModel : ViewModel() {
         // Continue until you reach 50...
     )
 
-    var currentQuestionIndex by mutableStateOf(0)
+    var currentQuestionIndex by mutableIntStateOf(0)
         private set
 
     val questions: List<Question> get() = _questions

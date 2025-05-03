@@ -1,5 +1,10 @@
 package com.example.edustaz.ui.screen.olympiad
 
+import androidx.compose.animation.AnimatedContent
+import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -19,6 +24,10 @@ import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -28,14 +37,10 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.example.edustaz.ui.components.TestResultDialog
 import com.example.edustaz.ui.navigation.BottomNavBar
 import com.example.edustaz.ui.navigation.TopAppBar
 import com.example.edustaz.ui.theme.MontserratFont
-import androidx.compose.animation.AnimatedContent
-import androidx.compose.animation.ExperimentalAnimationApi
-import androidx.compose.animation.with
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.fadeOut
 
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
@@ -46,6 +51,7 @@ fun TestPage(
 ) {
     val currentIndex = viewModel.currentQuestionIndex
     val questions = viewModel.questions
+    var showDialog by remember { mutableStateOf(false) }
 
     Scaffold(
         topBar = {
@@ -72,7 +78,7 @@ fun TestPage(
                 AnimatedContent(
                     targetState = currentIndex,
                     transitionSpec = {
-                        fadeIn() with fadeOut()
+                        fadeIn().togetherWith(fadeOut())
                     },
                     modifier = Modifier.weight(1f)
                 ) { index ->
@@ -115,12 +121,7 @@ fun TestPage(
                                     modifier = Modifier
                                         .fillMaxWidth()
                                         .clip(RoundedCornerShape(10.dp))
-                                        .background(
-                                            if (selected == i)
-                                                Color(0xFFE6ECF6)
-                                            else
-                                                Color(0xFFE6ECF6)
-                                        )
+                                        .background(Color(0xFFE6ECF6))
                                         .clickable { viewModel.selectAnswer(i) }
                                         .padding(12.dp, 0.dp)
                                 ) {
@@ -163,8 +164,7 @@ fun TestPage(
 
                     Button(
                         onClick = {
-                            val score = viewModel.getScore()
-                            println("Нәтиже: $score/${questions.size}")
+                            showDialog = true
                         },
                         modifier = Modifier.fillMaxWidth(),
                         colors = ButtonDefaults.buttonColors(
@@ -177,8 +177,21 @@ fun TestPage(
                     }
                 }
             }
+
+            if (showDialog) {
+                TestResultDialog(
+                    score = viewModel.getScore(),
+                    total = questions.size,
+                    onBackToHome = {
+                        showDialog = false
+                        navController.popBackStack()
+                    },
+                    onDismiss = { showDialog = false }
+                )
+            }
         }
     }
 }
+
 
 
