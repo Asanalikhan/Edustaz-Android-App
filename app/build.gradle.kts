@@ -64,5 +64,7 @@ dependencies {
     implementation(libs.converter.gson)
     implementation(libs.androidx.runtime.livedata)
     implementation(libs.androidx.animation)
+    implementation(libs.androidx.material.icons.extended)
+    implementation(libs.androidx.material)
 
 }

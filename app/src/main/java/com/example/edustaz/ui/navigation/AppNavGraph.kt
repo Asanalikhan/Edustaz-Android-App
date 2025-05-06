@@ -19,6 +19,7 @@ import com.example.edustaz.ui.screen.olympiad.OlympiadPage
 import com.example.edustaz.ui.screen.olympiad.OlympiadViewModel
 import com.example.edustaz.ui.screen.olympiad.QuizViewModel
 import com.example.edustaz.ui.screen.olympiad.TestPage
+import com.example.edustaz.ui.screen.profile.AddMaterialsPage
 import com.example.edustaz.ui.screen.profile.ProfilePage
 import com.example.edustaz.ui.screen.profile.ProfileViewModel
 
@@ -89,7 +90,14 @@ fun AppNavGraph(navController: NavHostController) {
                 navController = navController,
                 title = "Атестация"
             )
-
+        }
+        composable("addMaterials") {
+            val profileViewModel: ProfileViewModel = viewModel()
+            AddMaterialsPage(
+                title = "Профиль",
+                navController = navController,
+                viewModel = profileViewModel
+            )
         }
     }
 }
