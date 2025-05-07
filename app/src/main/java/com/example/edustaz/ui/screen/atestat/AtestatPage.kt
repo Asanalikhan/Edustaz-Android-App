@@ -31,11 +31,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.example.edustaz.ui.navigation.BottomNavBar
 import com.example.edustaz.ui.navigation.TopAppBar
-import com.example.edustaz.ui.screen.olympiad.QuizViewModel
 import com.example.edustaz.ui.theme.MontserratFont
 
 @Composable
@@ -73,7 +71,6 @@ fun AtestatPage(
             )
         }
     ) { values ->
-
         if (isClicked) {
             Box(
                 modifier = Modifier
