@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
@@ -36,7 +37,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.edustaz.data.model.MaterialsResponse
 import com.example.edustaz.data.model.NamedItem
 import com.example.edustaz.ui.theme.MontserratFont
 
@@ -45,55 +45,39 @@ fun UploadMaterialScreen(
     onItemClick: (Int) -> Unit,
     onBackClick: () -> Unit
 ) {
-    val fileName = remember { mutableStateOf("") }
     val title = remember { mutableStateOf("") }
     val description = remember { mutableStateOf("") }
     val fullName = remember { mutableStateOf("") }
 
-    val directionOptions = listOf("БАҒЫТ 1", "БАҒЫТ 2")
-    val gradeOptions = listOf("1 сынып", "2 сынып", "6 сынып")
-    val subjectOptions = listOf("Математика", "Физика", "Химия")
+    val directionOptions =
+        listOf("Бағыт", "Мақала", "Ашық сабақ", "Тренерлерге", "Конспект", "Тест", "Сабақ жоспары")
+    val gradeOptions = listOf(
+        "Сынып",
+        "1 сынып",
+        "2 сынып",
+        "6 сынып",
+        "7 сынып",
+        "8 сынып",
+        "9 сынып",
+        "10 сынып",
+        "11 сынып"
+    )
+    val subjectOptions = listOf(
+        "Пән",
+        "Математика",
+        "Физика",
+        "Химия",
+        "Биология",
+        "География",
+        "Тарих",
+        "Ағылшын тілі",
+        "Қазақ тілі",
+        "Орыс тілі"
+    )
 
     var selectedDirection by remember { mutableStateOf(directionOptions.first()) }
     var selectedGrade by remember { mutableStateOf(gradeOptions.first()) }
     var selectedSubject by remember { mutableStateOf(subjectOptions.first()) }
-
-    val materials = listOf(
-        MaterialsResponse.Result(
-            access = false,
-            approvedAt = "",
-            className = MaterialsResponse.Result.ClassName(id = 6, name = "4 сынып"),
-            createdAt = "2025-04-07T06:17:00.818967+05:00",
-            description = "Қысқаша түсінік",
-            downloadCount = 0,
-            group = MaterialsResponse.Result.Group(id = 3, name = "Ашық сабақ"),
-            id = 9,
-            price = 499,
-            status = "approved",
-            subject = MaterialsResponse.Result.Subject(id = 3, name = "Алғашқы әскери дайындық"),
-            title = "Тестілеу үшін қолданушы атынан жарияланған материал",
-            uri = "testileu-ushin-qoldanushy-atynan-zhariyalangan-material-9",
-            user = "Нурда",
-            viewCount = 16
-        ),
-        MaterialsResponse.Result(
-            access = true,
-            approvedAt = "",
-            className = MaterialsResponse.Result.ClassName(id = 5, name = "3 сынып"),
-            createdAt = "2025-04-05T11:00:00.000000+05:00",
-            description = "Сабақ жоспары",
-            downloadCount = 5,
-            group = MaterialsResponse.Result.Group(id = 2, name = "Презентация"),
-            id = 10,
-            price = 0,
-            status = "approved",
-            subject = MaterialsResponse.Result.Subject(id = 2, name = "Математика"),
-            title = "Математика сабағы - натурал сандар",
-            uri = "matematika-sabaghy-naturalsandar-10",
-            user = "Айгүл",
-            viewCount = 45
-        )
-    )
 
     Column(
         modifier = Modifier
@@ -296,19 +280,111 @@ fun UploadMaterialScreen(
 
         Spacer(Modifier.height(10.dp))
 
-//        Box(
-//            modifier = Modifier.fillMaxSize(),
-//        ){
-//            LazyColumn(
-//                contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp),
-//                verticalArrangement = Arrangement.spacedBy(12.dp)
-//            ) {
-//                items(materials) { item ->
-//                    MaterialItem(item, onItemClick = { onItemClick(item.id)})
-//                }
-//            }
-//        }
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 20.dp)
+                .clickable { onItemClick(1) }
+                .border(1.dp, Color(0xFFD9D9D9), shape = RoundedCornerShape(5.dp)),
+            horizontalAlignment = Alignment.Start
+        ) {
+            Text(
+                text = "Тест",
+                fontFamily = MontserratFont,
+                fontWeight = FontWeight.Medium,
+                fontSize = 12.sp,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(start = 20.dp, top = 10.dp, bottom = 3.dp),
+                color = Color(0xFF4741E1),
+                textAlign = TextAlign.Start
+            )
 
+            Row(
+                modifier = Modifier
+                    .wrapContentWidth()
+                    .padding(bottom = 10.dp),
+            ) {
+                Text(
+                    text = "Ашық сабақ",
+                    fontFamily = MontserratFont,
+                    fontWeight = FontWeight.Light,
+                    fontSize = 10.sp,
+                    textAlign = TextAlign.Start,
+                    modifier = Modifier.padding(start = 20.dp)
+                )
+                Text(
+                    text = "6 сынып",
+                    fontFamily = MontserratFont,
+                    fontWeight = FontWeight.Light,
+                    fontSize = 10.sp,
+                    textAlign = TextAlign.Start,
+                    modifier = Modifier.padding(start = 10.dp)
+                )
+                Text(
+                    text = "Математика",
+                    fontFamily = MontserratFont,
+                    fontWeight = FontWeight.Light,
+                    fontSize = 10.sp,
+                    textAlign = TextAlign.Start,
+                    modifier = Modifier.padding(start = 10.dp)
+                )
+            }
+        }
+
+        Spacer(modifier = Modifier.height(7.dp))
+
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 20.dp)
+                .clickable { onItemClick(1) }
+                .border(1.dp, Color(0xFFD9D9D9), shape = RoundedCornerShape(5.dp)),
+            horizontalAlignment = Alignment.Start
+        ) {
+            Text(
+                text = "Lesson presentation Healthy habit",
+                fontFamily = MontserratFont,
+                fontWeight = FontWeight.Medium,
+                fontSize = 12.sp,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(start = 20.dp, top = 10.dp, bottom = 3.dp),
+                color = Color(0xFF4741E1),
+                textAlign = TextAlign.Start
+            )
+
+            Row(
+                modifier = Modifier
+                    .wrapContentWidth()
+                    .padding(bottom = 10.dp),
+            ) {
+                Text(
+                    text = "Мақала",
+                    fontFamily = MontserratFont,
+                    fontWeight = FontWeight.Light,
+                    fontSize = 10.sp,
+                    textAlign = TextAlign.Start,
+                    modifier = Modifier.padding(start = 20.dp)
+                )
+                Text(
+                    text = "10 сынып",
+                    fontFamily = MontserratFont,
+                    fontWeight = FontWeight.Light,
+                    fontSize = 10.sp,
+                    textAlign = TextAlign.Start,
+                    modifier = Modifier.padding(start = 10.dp)
+                )
+                Text(
+                    text = "Биология",
+                    fontFamily = MontserratFont,
+                    fontWeight = FontWeight.Light,
+                    fontSize = 10.sp,
+                    textAlign = TextAlign.Start,
+                    modifier = Modifier.padding(start = 10.dp)
+                )
+            }
+        }
 
     }
 }

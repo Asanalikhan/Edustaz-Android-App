@@ -83,12 +83,15 @@ fun AppNavGraph(navController: NavHostController) {
                 viewModel = profileViewModel
             )
         }
-        composable("test") {
+        composable("test/{type}/{subject}") {
             val quizViewModel: QuizViewModel = viewModel()
+            val type = it.arguments?.getString("type")
+            val subject = it.arguments?.getString("subject")
             TestPage(
                 viewModel = quizViewModel,
                 navController = navController,
-                title = "Атестация"
+                title = type.toString(),
+                subject = subject.toString(),
             )
         }
         composable("addMaterials") {

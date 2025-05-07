@@ -1,5 +1,6 @@
 package com.example.edustaz.ui.screen.atestat
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -30,9 +31,11 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.example.edustaz.ui.navigation.BottomNavBar
 import com.example.edustaz.ui.navigation.TopAppBar
+import com.example.edustaz.ui.screen.olympiad.QuizViewModel
 import com.example.edustaz.ui.theme.MontserratFont
 
 @Composable
@@ -50,6 +53,7 @@ fun AtestatPage(
         "Еңбек", "Химия", "Психология", "Орыс тілі",
         "Педагогика", "Тексеру"
     )
+
     Scaffold(
         modifier = Modifier
             .fillMaxSize()
@@ -86,7 +90,8 @@ fun AtestatPage(
                         subject = detailed,
                         onBack = { isClicked = false },
                         onStartTest = {
-                            navController.navigate("test")
+                            Log.d("AtestatPage", "Selected subject: $detailed")
+                            navController.navigate("test/Аттестация/$detailed")
                         }
                     )
                 }
@@ -155,4 +160,5 @@ fun SubjectCard(subject: String, onClick: (String) -> Unit) {
             }
         }
     }
+
 }
